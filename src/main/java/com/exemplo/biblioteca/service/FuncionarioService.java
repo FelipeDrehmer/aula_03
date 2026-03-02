@@ -41,4 +41,16 @@ public class FuncionarioService {
         funcionarioRepository.deleteById(id);
     }
 
+    public List<Funcionario> buscarPorNome(String nome) {
+        if (nome == null || nome.isBlank()) {
+            throw new ResponseStatusException(BAD_REQUEST, "Nome não pode ser vazio");
+        }
+
+        return funcionarioRepository.findByNome(nome);
+    }
+
+    public List<Funcionario> buscarPorCargo(int idCargo) {
+        return funcionarioRepository.findByIdCargo(idCargo);
+    }
+
 }

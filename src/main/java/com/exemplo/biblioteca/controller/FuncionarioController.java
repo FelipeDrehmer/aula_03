@@ -24,7 +24,7 @@ public class FuncionarioController {
         this.funcionarioService = autorService;
     }
 
-    @GetMapping
+    @GetMapping("/todos")
     public List<Funcionario> listarTodos() {
         return funcionarioService.listarTodos();
     }
@@ -40,9 +40,20 @@ public class FuncionarioController {
         return funcionarioService.cadastrarFuncionario(autor);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void remover(@PathVariable Long id) {
         funcionarioService.removerFuncionario(id);
     }
+
+    @GetMapping("/nome/{nome}")
+    public List<Funcionario> buscarPorNome(@PathVariable String nome) {
+        return funcionarioService.buscarPorNome(nome);
+    }
+
+    @GetMapping("/cargo/{idCargo}")
+    public List<Funcionario> buscarPorCargo(@PathVariable int idCargo) {
+        return funcionarioService.buscarPorCargo(idCargo);
+    }
+
 }
